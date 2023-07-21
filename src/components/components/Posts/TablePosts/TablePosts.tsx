@@ -11,10 +11,12 @@ export const TablePosts: React.FC<IProps> = ({ filteredPosts }) => {
 		<>
 			{filteredPosts.map((post: Post) => {
 				return (
-					<ul key={post.id}>
-						<li>{post.title}</li>
-						<li>{post.body}</li>
-						<li>{post.id}</li>
+					<ul key={post.id} className="grid grid-cols-[80px_auto_40%]">
+						<li className="border flex justify-center items-center">
+							{post.id}
+						</li>
+						<li className="border ps-2 flex items-center">{post.title}</li>
+						<li className="border ps-2 flex items-center">{post.body}</li>
 					</ul>
 				);
 			})}

@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Post } from "../../../../models";
-
 interface IProps {
 	searchTerm: string;
 	setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
