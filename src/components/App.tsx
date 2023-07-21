@@ -1,12 +1,9 @@
-import { Navigation } from "./components/Navigation";
+import Posts from "./components/Posts";
 
 function App() {
 	return (
 		<>
-			<div className="font-bold text-blue-600">Hello</div>
-			<div>
-				<Navigation />
-			</div>
+			<Posts />
 		</>
 	);
 }
