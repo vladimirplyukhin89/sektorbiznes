@@ -19,7 +19,7 @@ export const NavigationPosts: React.FC<IProps> = ({
 				value={searchTerm}
 				onChange={handleChange}
 				placeholder="Поиск"
-				className="border-2 mx-2 border-indigo-500"
+				className="border-2 border-indigo-500"
 			/>
 		</nav>
 	);

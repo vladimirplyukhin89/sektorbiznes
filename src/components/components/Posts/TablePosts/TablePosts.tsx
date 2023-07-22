@@ -3,13 +3,13 @@ import React from "react";
 import { Post } from "../../../../models/index";
 
 interface IProps {
-	filteredPosts: Post[];
+	currentPosts: Post[];
 }
 
-export const TablePosts: React.FC<IProps> = ({ filteredPosts }) => {
+export const TablePosts: React.FC<IProps> = ({ currentPosts }) => {
 	return (
 		<>
-			{filteredPosts.map((post: Post) => {
+			{currentPosts.map((post: Post) => {
 				return (
 					<ul key={post.id} className="grid grid-cols-[80px_auto_40%]">
 						<li className="border flex justify-center items-center">
