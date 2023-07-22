@@ -27,6 +27,16 @@ export const Posts: React.FC<{}> = () => {
 		? Math.ceil(filteredPosts.length / postsPerPage)
 		: 0;
 
+	// * For watching currentPage in URL
+	const updatePageInURL = (page: number) => {
+		const newURL: string = `${window.location.pathname}#${page}`;
+		window.history.replaceState({ path: newURL }, "", newURL);
+	};
+
+	React.useEffect(() => {
+		updatePageInURL(currentPage);
+	}, [currentPage]);
+
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}

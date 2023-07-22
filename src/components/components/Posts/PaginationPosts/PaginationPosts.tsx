@@ -36,9 +36,8 @@ export const PaginationPosts: React.FC<IProps> = ({
 					{ length: totalPages },
 					(_, index: number) => index + 1
 				).map((pageNumber: number) => (
-					<div className="p-1">
+					<div className="p-1" key={pageNumber}>
 						<button
-							key={pageNumber}
 							onClick={() => handlePageChange(pageNumber)}
 							className={currentPage === pageNumber ? "text-green-500" : ""}
 						>
