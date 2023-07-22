@@ -11,7 +11,7 @@ export const TablePosts: React.FC<IProps> = ({ currentPosts }) => {
 		<>
 			{currentPosts.map((post: Post) => {
 				return (
-					<ul key={post.id} className="grid grid-cols-[80px_auto_40%]">
+					<ul key={post.id} className="grid grid-cols-[80px_auto_40%] text-sm">
 						<li className="border flex justify-center items-center">
 							{post.id}
 						</li>

@@ -23,14 +23,9 @@ export const Posts: React.FC<{}> = () => {
 	const currentPosts: Post[] = filteredPosts
 		? filteredPosts.slice(indexOfFirstPost, indexOfLastPost)
 		: [];
-
 	const totalPages: number = filteredPosts
 		? Math.ceil(filteredPosts.length / postsPerPage)
 		: 0;
-
-	const handlePageChange = (pageNumber: number): void => {
-		setCurrentPage(pageNumber);
-	};
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -41,19 +36,21 @@ export const Posts: React.FC<{}> = () => {
 	}
 
 	return (
-		<>
+		<div className="">
 			<NavigationPosts searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
 			{Array.isArray(currentPosts) && currentPosts.length ? (
-				<TablePosts currentPosts={currentPosts} />
+				<>
+					<TablePosts currentPosts={currentPosts} />
+				</>
 			) : (
 				<p>Список постов пуст</p>
 			)}
 			<PaginationPosts
 				currentPage={currentPage}
 				totalPages={totalPages}
-				handlePageChange={handlePageChange}
+				setCurrentPage={setCurrentPage}
 			/>
-		</>
+		</div>
 	);
 };
