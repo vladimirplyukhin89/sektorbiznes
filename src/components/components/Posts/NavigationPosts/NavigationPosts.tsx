@@ -14,12 +14,13 @@ export const NavigationPosts: React.FC<IProps> = ({
 	};
 
 	return (
-		<nav>
+		<nav className=" mb-[15px]">
 			<input
 				value={searchTerm}
 				onChange={handleChange}
 				placeholder="Поиск"
-				className="border-2 border-indigo-500"
+				type="text"
+				className="text-white border-none bg-[#5A5C66] w-full max-w-[620px] ps-[26px] pt-[18px] pb-[15px]"
 			/>
 		</nav>
 	);
