@@ -27,40 +27,54 @@ export const PaginationPosts: React.FC<IProps> = ({
 		}
 	};
 	return (
-		<>
+		<tbody className="flex flex-row justify-between mt-[16px]">
 			{totalPages !== 0 && (
-				<footer className="flex justify-between mt-[16px]">
-					<button
-						className="ms-[40px] font-medium text-2xl text-[#474955] hover:text-[#7EBC3C]"
-						onClick={getPageBack}
-					>
-						Назад
-					</button>
-					<div className="flex">
-						{Array.from(
-							{ length: totalPages },
-							(_, index: number) => index + 1
-						).map((pageNumber: number) => (
-							<div className="p-1" key={pageNumber}>
-								<button
-									onClick={() => handlePageChange(pageNumber)}
-									className={currentPage === pageNumber ? "text-green-500" : ""}
-								>
-									<span className="font-semibold italic text-lg me-1 md:me-2">
-										{pageNumber}
-									</span>
-								</button>
+				<>
+					<tr>
+						<th>
+							<button
+								className="ms-[40px] font-medium text-2xl text-[#474955] hover:text-[#7EBC3C]"
+								onClick={getPageBack}
+							>
+								Назад
+							</button>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<div className="flex">
+								{Array.from(
+									{ length: totalPages },
+									(_, index: number) => index + 1
+								).map((pageNumber: number) => (
+									<div className="p-1" key={pageNumber}>
+										<button
+											onClick={() => handlePageChange(pageNumber)}
+											className={
+												currentPage === pageNumber ? "text-[#7EBC3C]" : ""
+											}
+										>
+											<span className="font-semibold italic text-lg me-1 md:me-2 hover:text-[#7EBC3C]">
+												{pageNumber}
+											</span>
+										</button>
+									</div>
+								))}
 							</div>
-						))}
-					</div>
-					<button
-						className="me-[40px] font-medium text-2xl text-[#474955] hover:text-[#7EBC3C]"
-						onClick={getPageForward}
-					>
-						Далее
-					</button>
-				</footer>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<button
+								className="me-[40px] font-medium text-2xl text-[#474955] hover:text-[#7EBC3C]"
+								onClick={getPageForward}
+							>
+								Далее
+							</button>
+						</th>
+					</tr>
+				</>
 			)}
-		</>
+		</tbody>
 	);
 };
