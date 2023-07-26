@@ -4,40 +4,25 @@ import { Post } from "../../../../models/index";
 import SortPosts from "./SortPosts";
 
 interface IProps {
-	sortPostsById: (posts: Post[]) => Post[];
-	sortPostsByTitle: (posts: Post[]) => Post[];
 	currentPosts: Post[];
-	setSortType: React.Dispatch<React.SetStateAction<"title" | "id">>;
+	sortType: "id" | "title";
 	setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
+	setSortType: React.Dispatch<React.SetStateAction<"id" | "title">>;
 }
 
 export const TablePosts: React.FC<IProps> = ({
-	sortPostsById,
-	sortPostsByTitle,
 	currentPosts,
-	setSortType,
+	sortType,
 	setSortOrder,
+	setSortType,
 }) => {
-	const [sortedPosts, setSortedPosts] = React.useState<Post[]>(currentPosts);
-	const handleTitleSort = () => {
-		setSortType("title");
-		setSortOrder("asc" ? "desc" : "asc");
-		setSortedPosts(sortPostsByTitle(currentPosts));
-	};
-
-	const handleIdSort = () => {
-		setSortType("id");
-		setSortOrder("asc" ? "desc" : "asc");
-		setSortedPosts(sortPostsById(currentPosts));
-	};
-
 	return (
 		<>
 			<SortPosts
-				handleTitleSort={handleTitleSort}
-				handleIdSort={handleIdSort}
+				sortType={sortType}
+				setSortOrder={setSortOrder}
+				setSortType={setSortType}
 			/>
-
 			{currentPosts.map((post: Post) => {
 				return (
 					<tbody key={post.id}>

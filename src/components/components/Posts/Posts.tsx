@@ -10,32 +10,9 @@ export const Posts: React.FC<{}> = () => {
 	const [searchTerm, setSearchTerm] = React.useState<string>("");
 	const [currentPage, setCurrentPage] = React.useState<number>(1);
 	const [sortOrder, setSortOrder] = React.useState<"asc" | "desc">("asc");
-	const [_, setSortType] = React.useState<"id" | "title">("id");
+	const [sortType, setSortType] = React.useState<"id" | "title">("id");
 	const postsPerPage: number = 10;
 	const { isLoading, isError, data } = useSearchPostsQuery("");
-
-	// * For sorting posts
-	const sortPostsById = React.useCallback(
-		(posts: Post[]) => {
-			return posts
-				.slice()
-				.sort((a, b) => (sortOrder === "asc" ? a.id - b.id : b.id - a.id));
-		},
-		[sortOrder]
-	);
-
-	const sortPostsByTitle = React.useCallback(
-		(posts: Post[]) => {
-			return posts
-				.slice()
-				.sort((a, b) =>
-					sortOrder === "asc"
-						? a.title.localeCompare(b.title)
-						: b.title.localeCompare(a.title)
-				);
-		},
-		[sortOrder]
-	);
 
 	// * For filtration by value in input
 	const filteredPosts: Post[] | undefined = data?.filter((post: Post) =>
@@ -54,6 +31,40 @@ export const Posts: React.FC<{}> = () => {
 			? filteredPosts.slice(indexOfFirstPost, indexOfLastPost)
 			: [];
 	}, [filteredPosts, indexOfFirstPost, indexOfLastPost]);
+
+	// * For sorting posts
+	const sortPostsById = React.useCallback(
+		(posts: Post[]) => {
+			return posts
+				.slice()
+				.sort((a, b) => (sortOrder === "asc" ? a.id - b.id : b.id - a.id));
+		},
+		[sortOrder]
+	);
+
+	const sortPostsByTitle = React.useCallback(
+		(posts: Post[]) => {
+			return posts
+				.slice()
+				.sort((a, b) =>
+					sortOrder === "asc"
+						? a.title.localeCompare(b.title) - b.title.localeCompare(a.title)
+						: b.title.localeCompare(a.title) - a.title.localeCompare(b.title)
+				);
+		},
+		[sortOrder]
+	);
+
+	const sortedPosts = React.useMemo(() => {
+		switch (sortType) {
+			case "id":
+				return sortPostsById(currentPosts);
+			case "title":
+				return sortPostsByTitle(currentPosts);
+			default:
+				return currentPosts;
+		}
+	}, [sortType, currentPosts, sortPostsById, sortPostsByTitle]);
 
 	// * For watching currentPage in URL
 	const updatePageInURL = (page: number) => {
@@ -88,11 +99,10 @@ export const Posts: React.FC<{}> = () => {
 			{Array.isArray(currentPosts) && currentPosts.length ? (
 				<table>
 					<TablePosts
-						sortPostsById={sortPostsById}
-						sortPostsByTitle={sortPostsByTitle}
-						currentPosts={currentPosts}
-						setSortType={setSortType}
+						currentPosts={sortedPosts}
+						sortType={sortType}
 						setSortOrder={setSortOrder}
+						setSortType={setSortType}
 					/>
 					<PaginationPosts
 						currentPage={currentPage}
