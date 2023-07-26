@@ -30,7 +30,7 @@ export const SortPosts: React.FC<IProps> = ({
 		handleTitleSort();
 	};
 	return (
-		<thead className="grid grid-cols-[56px_413px_216px] md:grid-cols-[112px_480px_433px] bg-[#474955] text-white pt-[19px] pb-[16px]">
+		<thead className="grid grid-cols-[56px_216px_413px] lg:grid-cols-[112px_480px_433px] bg-[#474955] text-white pt-[19px] pb-[16px]">
 			<tr className="flex justify-center w-[56px] md:w-[112px]">
 				<th className="me-[18px] md:me-[39px]">ID</th>
 				<div className="relative group">
@@ -52,7 +52,7 @@ export const SortPosts: React.FC<IProps> = ({
 				</div>
 			</tr>
 
-			<tr className="flex justify-center w-[413px] md:w-[480px]">
+			<tr className="flex justify-center w-[216px] lg:w-[480px]">
 				<th className="me-[18px] md:me-[34px]">Заголовок</th>
 				<div className="relative group">
 					<button>
@@ -73,7 +73,7 @@ export const SortPosts: React.FC<IProps> = ({
 				</div>
 			</tr>
 
-			<tr className="flex justify-start ps-[30px] md:ps-[60px] lg:ps-[121px] w-[216px] md:w-[433px]">
+			<tr className="flex justify-start ps-[30px] md:ps-[60px] lg:ps-[121px] w-[413px] lg:w-[433px]">
 				<th className="me-[18px] md:me-[25px]">Описание</th>
 				<div className="relative group">
 					<button>
