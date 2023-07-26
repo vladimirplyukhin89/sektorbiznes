@@ -3,16 +3,11 @@ import React from "react";
 import arrowIcon from "./image/arrow.svg";
 
 interface IProps {
-	sortType: "id" | "title";
 	setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
 	setSortType: React.Dispatch<React.SetStateAction<"id" | "title">>;
 }
 
-export const SortPosts: React.FC<IProps> = ({
-	sortType,
-	setSortOrder,
-	setSortType,
-}) => {
+export const SortPosts: React.FC<IProps> = ({ setSortOrder, setSortType }) => {
 	const [idAsc, setIdAsc] = React.useState<"По возрастанию" | "По убыванию">(
 		"По возрастанию"
 	);
@@ -20,14 +15,14 @@ export const SortPosts: React.FC<IProps> = ({
 		"По возрастанию" | "По убыванию"
 	>("По возрастанию");
 
-	const handleSortedPosts = (sortType: string) => {
-		if (sortType === "id") {
+	const handleSortedPosts = (type: string) => {
+		if (type === "id") {
 			setSortOrder((prevSortOrder) =>
 				prevSortOrder === "asc" ? "desc" : "asc"
 			);
 			setSortType("id");
 			setIdAsc(idAsc === "По возрастанию" ? "По убыванию" : "По возрастанию");
-		} else if (sortType === "title") {
+		} else if (type === "title") {
 			setSortOrder((prevSortOrder) =>
 				prevSortOrder === "asc" ? "desc" : "asc"
 			);

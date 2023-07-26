@@ -5,24 +5,18 @@ import SortPosts from "./SortPosts";
 
 interface IProps {
 	currentPosts: Post[];
-	sortType: "id" | "title";
 	setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
 	setSortType: React.Dispatch<React.SetStateAction<"id" | "title">>;
 }
 
 export const TablePosts: React.FC<IProps> = ({
 	currentPosts,
-	sortType,
 	setSortOrder,
 	setSortType,
 }) => {
 	return (
 		<>
-			<SortPosts
-				sortType={sortType}
-				setSortOrder={setSortOrder}
-				setSortType={setSortType}
-			/>
+			<SortPosts setSortOrder={setSortOrder} setSortType={setSortType} />
 			{currentPosts.map((post: Post) => {
 				return (
 					<tbody key={post.id}>
