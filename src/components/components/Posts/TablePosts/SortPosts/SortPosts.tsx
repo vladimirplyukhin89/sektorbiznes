@@ -25,7 +25,7 @@ export const SortPosts: React.FC<IProps> = ({ setSortOrder, setSortType }) => {
 			<th className="flex justify-center w-[56px] lg:w-[112px]">
 				<span
 					onClick={() => handleSortedPosts(sortType)}
-					className="cursor-pointer"
+					className="cursor-pointer hover:text-[#7EBC3C]"
 				>
 					<span className="me-[18px] lg:me-[39px]">{label}</span>
 				</span>

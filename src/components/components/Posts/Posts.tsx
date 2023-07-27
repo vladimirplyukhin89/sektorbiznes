@@ -97,7 +97,7 @@ export const Posts: React.FC<{}> = () => {
 			<NavigationPosts searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
 			{Array.isArray(currentPosts) && currentPosts.length ? (
-				<table className="mt-[70px]">
+				<table>
 					<TablePosts
 						currentPosts={sortedPosts}
 						setSortOrder={setSortOrder}
