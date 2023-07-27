@@ -19,4 +19,4 @@
 
 ### Links:
 
-- Love Site URL: [Vercel](sektorbiznes.vercel.app)
+- Love Site URL: [Vercel](https://sektorbiznes.vercel.app/)
